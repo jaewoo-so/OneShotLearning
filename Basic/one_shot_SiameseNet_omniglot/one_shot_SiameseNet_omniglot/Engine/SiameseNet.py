@@ -7,19 +7,52 @@ from keras.losses import binary_crossentropy
 import numpy.random as rng
 import numpy as np
 import os
-import dill as pickle
 import matplotlib.pyplot as plt
 from sklearn.utils import shuffle
+from keras import initializers
+from keras import layers
 
-def W_init(shape,name=None):
-    """Initialize weights as in paper"""
-    values = rng.normal(loc=0,scale=1e-2,size=shape)
-    return K.variable(values,name=name)
-#//TODO: figure out how to initialize layer biases in keras.
-def b_init(shape,name=None):
-    """Initialize bias as in paper"""
-    values=rng.normal(loc=0.5,scale=1e-2,size=shape)
-    return K.variable(values,name=name)
+class TestNet:
+
+    def __init__(self  ):
+        self.L1 = self._createConvlayer(64,10)
+        self.L2 = self._createConvlayer(128,7)
+        self.L3 = self._createConvlayer(128,4)
+        self.L4 = self._createConvlayer(256,4)
+        self.D1 = Dense(4096,activation="sigmoid",kernel_regularizer=l2(1e-3),kernel_initializer=W_init,bias_initializer=b_init)
+
+    def build(self,input):
+        x = self.L1(input)
+        x = self.L2(x)
+        x = self.L3(x)
+        x = self.L4(x)
+        x = Flatten()(x)
+        x = self.D1(x)
+        return x
+
+    def _createConvlayer(self,output,kernelSize):
+        conv =  Conv2D(output , (kernelSize,kernelSize) ,activation='relu', 
+                       kernel_regularizer=l2(2e-4),
+                       kernel_initializer=initializers.RandomNormal(0,0.01),
+                       bias_initializer=initializers.RandomNormal(0,0.01))
+        return MaxPooling2D()(conv)
+
+def main():
+    input_shape = (105, 105, 1)
+    net = TestNet()
+    anchor = Input(input_shape) 
+    positive  = Input(input_shape)
+
+    anchorNet = net.build(anchor)
+    posNet = net.build(positive)
+    
+    # We need distance between anchor and pos. implement below
+    subtracted = layers.subtract([anchorNet,posNet])
+    abslayer = layers.Lambda( 
+
+
+    
+
 
 input_shape = (105, 105, 1)
 left_input = Input(input_shape)

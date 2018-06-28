@@ -4,14 +4,14 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>eb2b2c06-2251-45a3-a4f3-0f392538eb24</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>one_shot_SiameseNet_omniglot.py</StartupFile>
+    <StartupFile>test2.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>one_shot_SiameseNet_omniglot</Name>
     <RootNamespace>one_shot_SiameseNet_omniglot</RootNamespace>
-    <InterpreterId>Global|VisualStudio|TF_Py35</InterpreterId>
+    <InterpreterId>Global|VisualStudio|tf18</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -25,7 +25,13 @@
     <Compile Include="Engine\SiameseNet.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ModelTest.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="one_shot_SiameseNet_omniglot.py" />
+    <Compile Include="test2.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DataLoader\" />
@@ -33,7 +39,7 @@
     <Folder Include="Engine\" />
   </ItemGroup>
   <ItemGroup>
-    <InterpreterReference Include="Global|VisualStudio|TF_Py35" />
+    <InterpreterReference Include="Global|VisualStudio|tf18" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
