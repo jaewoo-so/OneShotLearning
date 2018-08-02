@@ -31,7 +31,6 @@
     <Compile Include="ModelTest.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="one_shot_SiameseNet_omniglot.py" />
     <Compile Include="test2.py">
       <SubType>Code</SubType>
     </Compile>
